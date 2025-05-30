@@ -34,7 +34,16 @@
     "zod": "^3.22.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@hello-pangea/dnd": "^18.0.1",
+    "@mui/lab": "^7.0.0-beta.12",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1"
+  },
+  "resolutions": {
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0"
   }
 }
