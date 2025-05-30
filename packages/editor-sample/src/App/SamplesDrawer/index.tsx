@@ -1,16 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Box, Button, Divider, Drawer, Link, Stack, Typography } from '@mui/material';
 
-import { useSamplesDrawerOpen } from '../../documents/editor/EditorContext';
+import { useSamplesDrawerOpen, resetDocument } from '../../documents/editor/EditorContext';
 
-import SidebarButton from './SidebarButton';
 import logo from './waypoint.svg';
+import EMPTY_EMAIL_MESSAGE from '../../getConfiguration/sample/empty-email-message';
 
 export const SAMPLES_DRAWER_WIDTH = 240;
 
+// Helper function to get saved templates from localStorage
+function getSavedTemplates() {
+  const templates: { name: string; key: string }[] = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('emailbuilderjs_template_')) {
+      const name = key.replace('emailbuilderjs_template_', '');
+      templates.push({ name, key });
+    }
+  }
+  return templates;
+}
+
+// Helper function to load a template from localStorage
+function loadTemplateFromLocalStorage(key: string) {
+  const item = localStorage.getItem(key);
+  if (item) {
+    try {
+      return JSON.parse(item);
+    } catch (e) {
+      console.error(`Failed to parse template from localStorage for key ${key}:`, e);
+      return null;
+    }
+  }
+  return null;
+}
+
 export default function SamplesDrawer() {
   const samplesDrawerOpen = useSamplesDrawerOpen();
+  const [savedTemplates, setSavedTemplates] = useState<{ name: string; key: string }[]>([]);
+
+  useEffect(() => {
+    if (samplesDrawerOpen) {
+      setSavedTemplates(getSavedTemplates());
+    }
+  }, [samplesDrawerOpen]); // Refresh list when drawer opens
+
+  const handleTemplateClick = (key: string) => {
+    const template = loadTemplateFromLocalStorage(key);
+    if (template) {
+      resetDocument(template); // Load the template into the editor and reset state
+    }
+  };
+
+  const handleNewTemplate = () => {
+    resetDocument(EMPTY_EMAIL_MESSAGE); // Load an empty template and reset state
+    // Optionally close the drawer or navigate
+  };
 
   return (
     <Drawer
@@ -24,19 +70,21 @@ export default function SamplesDrawer() {
       <Stack spacing={3} py={1} px={2} width={SAMPLES_DRAWER_WIDTH} justifyContent="space-between" height="100%">
         <Stack spacing={2} sx={{ '& .MuiButtonBase-root': { width: '100%', justifyContent: 'flex-start' } }}>
           <Typography variant="h6" component="h1" sx={{ p: 0.75 }}>
-            EmailBuilder.js
+            Saved Templates
           </Typography>
 
+          <Button size="small" variant="contained" onClick={handleNewTemplate}>
+            Create New Template
+          </Button>
+
+          <Divider />
+
           <Stack alignItems="flex-start">
-            <SidebarButton href="#">Empty</SidebarButton>
-            <SidebarButton href="#sample/welcome">Welcome email</SidebarButton>
-            <SidebarButton href="#sample/one-time-password">One-time passcode (OTP)</SidebarButton>
-            <SidebarButton href="#sample/reset-password">Reset password</SidebarButton>
-            <SidebarButton href="#sample/order-ecomerce">E-commerce receipt</SidebarButton>
-            <SidebarButton href="#sample/subscription-receipt">Subscription receipt</SidebarButton>
-            <SidebarButton href="#sample/reservation-reminder">Reservation reminder</SidebarButton>
-            <SidebarButton href="#sample/post-metrics-report">Post metrics</SidebarButton>
-            <SidebarButton href="#sample/respond-to-message">Respond to inquiry</SidebarButton>
+            {savedTemplates.map((template) => (
+              <Button key={template.key} size="small" onClick={() => handleTemplateClick(template.key)}>
+                {template.name}
+              </Button>
+            ))}
           </Stack>
 
           <Divider />

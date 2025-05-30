@@ -19,6 +19,7 @@ import HtmlPanel from './HtmlPanel';
 import ImportJson from './ImportJson';
 import JsonPanel from './JsonPanel';
 import MainTabsGroup from './MainTabsGroup';
+import SaveButton from './SaveButton';
 import ShareButton from './ShareButton';
 
 export default function TemplatePanel() {
@@ -96,6 +97,7 @@ export default function TemplatePanel() {
           </Stack>
           <Stack direction="row" spacing={2}>
             <DownloadJson />
+            <SaveButton />
             <ImportJson />
             <ToggleButtonGroup value={selectedScreenSize} exclusive size="small" onChange={handleScreenSizeChange}>
               <ToggleButton value="desktop">

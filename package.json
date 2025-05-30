@@ -17,6 +17,8 @@
     "@jest/globals": "^29.7.0",
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^29.5.12",
+    "@types/react-dnd": "^2.0.36",
+    "@types/react-dnd-html5-backend": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -30,5 +32,9 @@
     "tsup": "^8.0.2",
     "typescript": "^5.3.3",
     "zod": "^3.22.4"
+  },
+  "dependencies": {
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1"
   }
 }
