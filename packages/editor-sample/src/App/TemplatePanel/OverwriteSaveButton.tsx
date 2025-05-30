@@ -31,7 +31,6 @@ export default function OverwriteSaveButton() {
         autoHideDuration={2000}
         onClose={() => setSnackbar(null)}
         message={snackbar}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} // Position the snackbar
       />
     </>
   );

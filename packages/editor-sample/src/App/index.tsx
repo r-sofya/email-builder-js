@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Stack, useTheme } from '@mui/material';
+import { Box, Stack, useTheme } from '@mui/material';
 
 import { useInspectorDrawerOpen, useSamplesDrawerOpen } from '../documents/editor/EditorContext';
 
@@ -24,12 +24,14 @@ export default function App() {
   const marginRightTransition = useDrawerTransition('margin-right', inspectorDrawerOpen);
 
   return (
-    <>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'background.default', width: '100%' }}>
       <InspectorDrawer />
       <SamplesDrawer />
 
       <Stack
         sx={{
+          flexGrow: 1, // Ensure the stack takes up available space
+          minWidth: 0, // Prevent overflow issues with flexGrow
           marginRight: inspectorDrawerOpen ? `${INSPECTOR_DRAWER_WIDTH}px` : 0,
           marginLeft: samplesDrawerOpen ? `${SAMPLES_DRAWER_WIDTH}px` : 0,
           transition: [marginLeftTransition, marginRightTransition].join(', '),
@@ -37,6 +39,6 @@ export default function App() {
       >
         <TemplatePanel />
       </Stack>
-    </>
+    </Box>
   );
 }

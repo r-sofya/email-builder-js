@@ -22,33 +22,24 @@ import MainTabsGroup from './MainTabsGroup';
 import SaveButton from './SaveButton';
 import ShareButton from './ShareButton';
 
+const mainBoxSx: SxProps = {
+  flexGrow: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  bgcolor: 'rgba(0, 0, 255, 0.1)', // Temporary background color
+};
+
 export default function TemplatePanel() {
   const document = useDocument();
   const selectedMainTab = useSelectedMainTab();
   const selectedScreenSize = useSelectedScreenSize();
 
-  let mainBoxSx: SxProps = {
-    height: '100%',
-  };
-  if (selectedScreenSize === 'mobile') {
-    mainBoxSx = {
-      ...mainBoxSx,
-      margin: '32px auto',
-      width: 370,
-      height: 800,
-      boxShadow:
-        'rgba(33, 36, 67, 0.04) 0px 10px 20px, rgba(33, 36, 67, 0.04) 0px 2px 6px, rgba(33, 36, 67, 0.04) 0px 0px 1px',
-    };
-  }
-
-  const handleScreenSizeChange = (_: unknown, value: unknown) => {
-    switch (value) {
-      case 'mobile':
-      case 'desktop':
-        setSelectedScreenSize(value);
-        return;
-      default:
-        setSelectedScreenSize('desktop');
+  const handleScreenSizeChange = (
+    _: React.MouseEvent<HTMLElement>,
+    newScreenSize: 'desktop' | 'mobile' | null,
+  ) => {
+    if (newScreenSize !== null) {
+      setSelectedScreenSize(newScreenSize);
     }
   };
 

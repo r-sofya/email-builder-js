@@ -28,7 +28,6 @@ export default function InspectorDrawer() {
       anchor="right"
       open={inspectorDrawerOpen}
       sx={{
-        width: inspectorDrawerOpen ? INSPECTOR_DRAWER_WIDTH : 0,
       }}
     >
       <Box sx={{ width: INSPECTOR_DRAWER_WIDTH, height: 49, borderBottom: 1, borderColor: 'divider' }}>

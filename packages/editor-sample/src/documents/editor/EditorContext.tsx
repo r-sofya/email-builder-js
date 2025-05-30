@@ -14,6 +14,7 @@ type TValue = {
 
   inspectorDrawerOpen: boolean;
   samplesDrawerOpen: boolean;
+  currentTemplateKey: string | null; // Added state for current template key
 };
 
 const editorStateStore = create<TValue>(() => ({
@@ -25,6 +26,7 @@ const editorStateStore = create<TValue>(() => ({
 
   inspectorDrawerOpen: true,
   samplesDrawerOpen: true,
+  currentTemplateKey: null, // Initialize new state
 }));
 
 export function useDocument() {
@@ -59,6 +61,10 @@ export function useSamplesDrawerOpen() {
   return editorStateStore((s) => s.samplesDrawerOpen);
 }
 
+export function useCurrentTemplateKey() {
+  return editorStateStore((s) => s.currentTemplateKey);
+}
+
 export function setSelectedBlockId(selectedBlockId: TValue['selectedBlockId']) {
   const selectedSidebarTab = selectedBlockId === null ? 'styles' : 'block-configuration';
   const options: Partial<TValue> = {};
@@ -81,6 +87,7 @@ export function resetDocument(document: TValue['document']) {
     document,
     selectedSidebarTab: 'styles',
     selectedBlockId: null,
+    currentTemplateKey: null, // Reset key when loading empty/sample
   });
 }
 
@@ -91,6 +98,16 @@ export function setDocument(document: TValue['document']) {
       ...originalDocument,
       ...document,
     },
+    // Removed: currentTemplateKey: null, // This line was causing the issue
+  });
+}
+
+export function loadDocumentAndSetKey(document: TValue['document'], key: string | null) {
+  return editorStateStore.setState({
+    document,
+    selectedSidebarTab: 'styles',
+    selectedBlockId: null,
+    currentTemplateKey: key, // Set the key when loading a saved template
   });
 }
 
