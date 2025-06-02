@@ -6,9 +6,8 @@
   "target": "ES2022",
   "files": [
     "dist"
-  ],
-  "scripts": {
-    "build": "npx tsc",
+  ],  "scripts": {
+    "build": "cd packages/editor-sample && npm install && npm run build",
     "test": "npx jest"
   },
   "author": "carlos@usewaypoint.com",
