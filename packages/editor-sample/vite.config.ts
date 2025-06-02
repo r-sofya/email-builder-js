@@ -9,6 +9,10 @@ export default defineConfig({
     }
   })],
   base: '/email-builder-js/',
+  build: {
+    outDir: 'dist', // Default output directory
+    assetsDir: 'assets' // Default assets directory (relative to outDir)
+  },
   optimizeDeps: {
     include: ['@emotion/react', '@emotion/styled']
   }
