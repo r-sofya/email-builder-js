@@ -6,7 +6,8 @@
   "target": "ES2022",
   "files": [
     "dist"
-  ],  "scripts": {
+  ],
+  "scripts": {
     "build": "cd packages/editor-sample && npm install && npm run build",
     "test": "npx jest"
   },
