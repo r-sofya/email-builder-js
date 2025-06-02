@@ -8,7 +8,7 @@ export default defineConfig({
       plugins: ['@emotion/babel-plugin']
     }
   })],
-  base: '/email-builder-js/',
+  base: './',
   build: {
     outDir: 'dist', // Default output directory
     assetsDir: 'assets' // Default assets directory (relative to outDir)
