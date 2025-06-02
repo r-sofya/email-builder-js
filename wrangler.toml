@@ -1,5 +1,2 @@
 name = "email-builder"
 compatibility_date = "2025-06-02"
-
-[site]
-bucket = "packages/editor-sample/dist"
