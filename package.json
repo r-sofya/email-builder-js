@@ -7,7 +7,7 @@
   "files": [
     "dist"
   ],  "scripts": {
-    "build": "cd packages/editor-sample && npm install && npm run build",
+    "build": "cd packages/editor-sample; npm install; npm run build; echo /* /index.html 200 > ./dist/_redirects",
     "test": "npx jest"
   },
   "author": "carlos@usewaypoint.com",
