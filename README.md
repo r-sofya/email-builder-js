@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center"> 
   <h1>EmailBuilder.js</h1>
   <p align="center">
     <a href="https://usewaypoint.github.io/email-builder-js/#sample/reservation-reminder">Demo / Playground</a>&emsp;&middot;&emsp;
