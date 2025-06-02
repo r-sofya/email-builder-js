@@ -1,6 +1,5 @@
 name = "email-builder"
 compatibility_date = "2025-06-02"
-main = "worker.js"
 
 [assets]
 directory = "packages/editor-sample/dist"
