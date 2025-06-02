@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2015",
     "module": "esnext",
-    "lib": [],
+    "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
     "strict": true,
@@ -18,5 +18,5 @@
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": ["dist"]
+  "exclude": ["dist", "worker.js", "packages/editor-sample/dist"]
 }
